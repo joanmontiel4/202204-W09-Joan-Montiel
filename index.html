@@ -6,6 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="./favicon.png" type="image/x-icon" />
         <title>Pokémon</title>
+        <link rel="stylesheet" href="/dist/css/styles.css" />
+        <script src="./dist/scripts/app.js" type="module"></script>
     </head>
-    <body></body>
+    <body>
+        <div class="container">
+            <slot class="header"></slot>
+            <slot class="main-sec"></slot>
+        </div>
+    </body>
 </html>
