@@ -1,23 +1,16 @@
 import { Header } from './components/header.js';
-import { Footer } from './components/footer.js';
 import { Main } from './components/main.js';
+import { TodoList } from './components/todo-list.js';
 (() => {
     document.addEventListener('DOMContentLoaded', () => {
-        const path = location.pathname.split('/');
-        if (
-            path[path.length - 1] === '' ||
-            path[path.length - 1] === 'index.html'
-        ) {
-            commonComponents();
-        } else if (path[path.length - 1] === 'mypokemons.html') {
-            commonComponents();
-        } else if (path[path.length - 1] === 'details.html') {
-            commonComponents();
-        }
+        new Header('slot.header');
+        new Main('slot.main-sec');
+        new TodoList('');
+        ////////////////////// TEST CHARMANDER //////////////////////////////////
+        // const test = fetch('https://pokeapi.co/api/v2/pokemon/charmander').then(
+        //     (resp) => resp.json()
+        // );
+        // console.log(test);
     });
 })();
-
-function commonComponents() {
-    new Header('slot.header');
-    new Footer('slot.footer');
-}
+//# sourceMappingURL=app.js.map
