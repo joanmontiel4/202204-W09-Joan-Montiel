@@ -8,8 +8,10 @@ export class TodoList extends Component {
         super();
         this.selector = selector;
         this.pokemonList = new HttpItems();
-        this.template = this.createTemplate();
-        // this.outRender(this.selector);
+        this.pokemonList.getSetOfItems().then((pokemons) => {
+            this.template = this.createTemplate();
+            this.outRender(this.selector);
+        });
     }
     createTemplate() {
         return `

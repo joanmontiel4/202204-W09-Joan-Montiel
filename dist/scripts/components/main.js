@@ -1,4 +1,5 @@
 import { Component } from './component.js';
+import { PokeList } from './pokelist.js';
 export class Main extends Component {
     selector;
     template;
@@ -12,13 +13,12 @@ export class Main extends Component {
     createTemplate() {
         return `
             <main class="main">
-                <section class="series">
-                </section>    
+                <slot class="pokelist"></slot>    
             </main>
         `;
     }
     createContent() {
-        // new SeriesList('.series');
+        new PokeList('slot.pokelist');
     }
 }
 //# sourceMappingURL=main.js.map

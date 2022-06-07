@@ -1,5 +1,6 @@
 import { iComponent } from '../interfaces/icomponent.js';
 import { Component } from './component.js';
+import { PokeList } from './pokelist.js';
 
 export class Main extends Component implements iComponent {
     template: string;
@@ -12,12 +13,11 @@ export class Main extends Component implements iComponent {
     createTemplate() {
         return `
             <main class="main">
-                <section class="series">
-                </section>    
+                <slot class="pokelist"></slot>    
             </main>
         `;
     }
     createContent() {
-        // new SeriesList('.series');
+        new PokeList('slot.pokelist');
     }
 }
