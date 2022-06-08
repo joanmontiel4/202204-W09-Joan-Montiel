@@ -1,16 +1,19 @@
 import { Component } from './component.js';
-import { PokelistItem } from './pokelistItem.js';
+import { PokeListItem } from './pokelistItem.js';
+import { PokeCard } from './poke-card.js';
+import { HttpMyPoke } from '../services/HttpMyPoke.js';
 export class PokeList extends Component {
     selector;
     template = '';
     offset = 0;
     offsetStep = 20;
+    currentPokeList;
     constructor(selector) {
         super();
         this.selector = selector;
         this.template = this.createTemplate();
         this.outRender(this.selector);
-        new PokelistItem('section.pokelist', this.offset, this.offsetStep, this.handlerButton.bind(this));
+        this.currentPokeList = new PokeListItem('section.pokelist', this.offset, this.offsetStep, this.handlerButton.bind(this), this.handlerPokeDetails.bind(this));
     }
     createTemplate() {
         return `
@@ -21,7 +24,6 @@ export class PokeList extends Component {
     handlerButton(ev) {
         // Handling Previous and Next buttons by using the listOffset
         ev.preventDefault();
-        console.log('In the handlerButton');
         const selectButton = ev.target.dataset.button;
         if (selectButton === 'prev') {
             this.offset -= this.offsetStep;
@@ -29,7 +31,41 @@ export class PokeList extends Component {
         else {
             this.offset += this.offsetStep;
         }
-        new PokelistItem('section.pokelist', this.offset, this.offsetStep, this.handlerButton.bind(this));
+        this.currentPokeList = new PokeListItem('section.pokelist', this.offset, this.offsetStep, this.handlerButton.bind(this), this.handlerPokeDetails.bind(this));
+    }
+    handlerPokeDetails(ev) {
+        // Handling Previous and Next buttons by using the listOffset
+        ev.preventDefault();
+        const selectedPoke = ev.target.dataset.pokeid;
+        const selectedPokeId = +selectedPoke;
+        console.log('handlerPokeDetails');
+        console.log(selectedPoke);
+        console.log(selectedPokeId);
+        new PokeCard('section.pokelist', selectedPokeId, this.handlerCardButtons.bind(this));
+    }
+    handlerCardButtons(ev) {
+        // Handling Add to my list and Go to list buttons
+        ev.preventDefault();
+        const selectButton = ev.target.dataset
+            .cardbutton;
+        const pokeName = ev.target.dataset.pokename;
+        if (selectButton === 'catch') {
+            console.log('catch');
+            console.log(pokeName);
+            this.addToMyList(pokeName);
+        }
+        else if (selectButton === 'goto') {
+            this.currentPokeList = new PokeListItem('section.pokelist', this.offset, this.offsetStep, this.handlerButton.bind(this), this.handlerPokeDetails.bind(this));
+        }
+    }
+    addToMyList(pokeName) {
+        const newPoke = new HttpMyPoke();
+        const currentList = this.currentPokeList.pokeListState;
+        console.log(pokeName);
+        console.log(currentList);
+        const selectedPoke = currentList.filter((poke) => poke.name === pokeName);
+        console.log(selectedPoke);
+        newPoke.setPoke(selectedPoke[0]);
     }
 }
 //# sourceMappingURL=pokelist.js.map

@@ -1,11 +1,11 @@
 import { iComponent } from '../interfaces/icomponent.js';
-import { pokemonAPI } from '../services/pokemonAPI.js';
+import { PokemonAPI } from '../services/pokeAPI.js';
 import { Component } from './component.js';
 import { iPokemonListElements } from '../interfaces/ipokemons-list.js';
 
-export class PokelistItem extends Component implements iComponent {
+export class PokeListItem extends Component implements iComponent {
     template: string = '';
-    pokeList: pokemonAPI;
+    pokeList: PokemonAPI;
     pokeListState: iPokemonListElements = [];
     pokeListCount: number = 0;
 
@@ -13,10 +13,11 @@ export class PokelistItem extends Component implements iComponent {
         public selector: string,
         public offset: number,
         public offsetStep: number,
-        public handlerButton: Function
+        public handlerButton: Function,
+        public handlerPokeDetails: Function
     ) {
         super();
-        this.pokeList = new pokemonAPI(offset, offsetStep);
+        this.pokeList = new PokemonAPI(offset, offsetStep);
         this.pokeList.getSetOfItems().then((res) => {
             this.pokeListState = res.results;
             this.pokeListCount = res.count;
@@ -39,15 +40,18 @@ export class PokelistItem extends Component implements iComponent {
                 <nav class="nav">${this.createNav()}</nav>
                 <span>${this.offset.toString()}-${offsetRange.toString()}/${
             this.pokeListCount
-        }</span>
-            
+        }</span>    
         `;
     }
 
     createList() {
         let httpList = '';
         this.pokeListState.forEach((pokemon) => {
-            httpList += `<li class="pokelist__link"><a href="">${pokemon.name}</li>`;
+            const splitPath = pokemon.url.split('/');
+            const id = splitPath[splitPath.length - 2];
+            httpList += `<li class="pokelist__link"><a class="poke-link" data-pokeid="${id.toString()}" href="">${
+                pokemon.name
+            }</a></li>`;
         });
         return httpList;
     }
@@ -71,6 +75,14 @@ export class PokelistItem extends Component implements iComponent {
             .querySelectorAll('button')
             .forEach((item) =>
                 item.addEventListener('click', this.handlerButton.bind(this))
+            );
+        document
+            .querySelectorAll('.poke-link')
+            .forEach((item) =>
+                item.addEventListener(
+                    'click',
+                    this.handlerPokeDetails.bind(this)
+                )
             );
     }
 }

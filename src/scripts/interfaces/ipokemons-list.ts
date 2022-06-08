@@ -10,4 +10,10 @@ export interface iPokemonListElement {
     url: string;
 }
 
+export interface iMyPokemonListElement {
+    id: number;
+    name: string;
+    url: string;
+}
+
 export type iPokemonListElements = Array<iPokemonListElement>;

@@ -1,4 +1,4 @@
-export class pokemonAPI {
+export class PokemonAPI {
     offset;
     offsetStep;
     url;
@@ -14,4 +14,4 @@ export class pokemonAPI {
 // setItems() {}
 // updateItem() {}
 // deleteItem() {}
-//# sourceMappingURL=pokemonAPI.js.map
+//# sourceMappingURL=pokeAPI.js.map
