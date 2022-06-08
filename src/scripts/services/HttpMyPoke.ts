@@ -3,7 +3,7 @@ import {
     iMyPokemonListElement,
 } from '../interfaces/ipokemons-list.js';
 
-export class HttpTasks {
+export class HttpMyPoke {
     url: string;
     constructor() {
         this.url = 'http://localhost:3000/mypokemons/';

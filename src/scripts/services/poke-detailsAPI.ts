@@ -7,6 +7,3 @@ export class PokeDetailsAPI {
         return fetch(this.url).then((resp) => resp.json());
     }
 }
-// setItems() {}
-// updateItem() {}
-// deleteItem() {}

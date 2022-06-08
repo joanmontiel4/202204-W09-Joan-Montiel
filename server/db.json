@@ -1,20 +1,36 @@
 {
-    "mypokemons": [],
-    "posts": [
-        {
-            "id": 1,
-            "title": "json-server",
-            "author": "typicode"
-        }
-    ],
-    "comments": [
-        {
-            "id": 1,
-            "body": "some comment",
-            "postId": 1
-        }
-    ],
-    "profile": {
-        "name": "typicode"
+  "mypokemons": [
+    {
+      "name": "charmander",
+      "url": "https://pokeapi.co/api/v2/pokemon/4/",
+      "id": 1
+    },
+    {
+      "name": "charmeleon",
+      "url": "https://pokeapi.co/api/v2/pokemon/5/",
+      "id": 2
+    },
+    {
+      "name": "paras",
+      "url": "https://pokeapi.co/api/v2/pokemon/46/",
+      "id": 3
     }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
 }

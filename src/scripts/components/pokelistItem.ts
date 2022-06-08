@@ -3,7 +3,7 @@ import { PokemonAPI } from '../services/pokeAPI.js';
 import { Component } from './component.js';
 import { iPokemonListElements } from '../interfaces/ipokemons-list.js';
 
-export class PokelistItem extends Component implements iComponent {
+export class PokeListItem extends Component implements iComponent {
     template: string = '';
     pokeList: PokemonAPI;
     pokeListState: iPokemonListElements = [];

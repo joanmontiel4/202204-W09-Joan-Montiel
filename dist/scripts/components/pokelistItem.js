@@ -1,6 +1,6 @@
 import { PokemonAPI } from '../services/pokeAPI.js';
 import { Component } from './component.js';
-export class PokelistItem extends Component {
+export class PokeListItem extends Component {
     selector;
     offset;
     offsetStep;

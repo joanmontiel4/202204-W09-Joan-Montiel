@@ -9,7 +9,4 @@ export class PokeDetailsAPI {
         return fetch(this.url).then((resp) => resp.json());
     }
 }
-// setItems() {}
-// updateItem() {}
-// deleteItem() {}
 //# sourceMappingURL=poke-detailsAPI.js.map

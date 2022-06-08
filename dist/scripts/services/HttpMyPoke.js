@@ -1,4 +1,4 @@
-export class HttpTasks {
+export class HttpMyPoke {
     url;
     constructor() {
         this.url = 'http://localhost:3000/mypokemons/';

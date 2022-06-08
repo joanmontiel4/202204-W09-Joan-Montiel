@@ -33,7 +33,7 @@ export class PokeCard extends Component implements iComponent {
             <span>Height: ${this.pokeSelectedDetails.height}</span>
             <span>Weight: ${this.pokeSelectedDetails.weight}</span>
         </div>
-        <button class="card-button" data-cardbutton="catch">Add to my list</button>
+        <button class="card-button" data-cardbutton="catch" data-pokename="${this.pokeSelectedDetails.name}">Add to my list</button>
         <button class="card-button" data-cardbutton="goto">Go to list</button>
         `;
     }
