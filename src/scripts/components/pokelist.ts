@@ -4,6 +4,7 @@ import { PokeListItem } from './pokelistItem.js';
 import { PokeCard } from './poke-card.js';
 import { HttpMyPoke } from '../services/HttpMyPoke.js';
 import { iPokemonListElements } from '../interfaces/ipokemons-list.js';
+import { PokemonAPI } from '../services/pokeAPI.js';
 
 export class PokeList extends Component implements iComponent {
     template: string = '';
@@ -11,12 +12,16 @@ export class PokeList extends Component implements iComponent {
     offsetStep: number = 20;
     currentPokeList: PokeListItem;
 
-    constructor(public selector: string) {
+    constructor(
+        public selector: string,
+        public httpAPI: PokemonAPI | HttpMyPoke
+    ) {
         super();
         this.template = this.createTemplate();
         this.outRender(this.selector);
         this.currentPokeList = new PokeListItem(
             'section.pokelist',
+            this.httpAPI,
             this.offset,
             this.offsetStep,
             this.handlerButton.bind(this),

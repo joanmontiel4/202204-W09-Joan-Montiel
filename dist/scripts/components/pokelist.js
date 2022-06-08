@@ -4,16 +4,18 @@ import { PokeCard } from './poke-card.js';
 import { HttpMyPoke } from '../services/HttpMyPoke.js';
 export class PokeList extends Component {
     selector;
+    httpAPI;
     template = '';
     offset = 0;
     offsetStep = 20;
     currentPokeList;
-    constructor(selector) {
+    constructor(selector, httpAPI) {
         super();
         this.selector = selector;
+        this.httpAPI = httpAPI;
         this.template = this.createTemplate();
         this.outRender(this.selector);
-        this.currentPokeList = new PokeListItem('section.pokelist', this.offset, this.offsetStep, this.handlerButton.bind(this), this.handlerPokeDetails.bind(this));
+        this.currentPokeList = new PokeListItem('section.pokelist', this.httpAPI, this.offset, this.offsetStep, this.handlerButton.bind(this), this.handlerPokeDetails.bind(this));
     }
     createTemplate() {
         return `

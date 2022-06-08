@@ -2,31 +2,34 @@ import { PokemonAPI } from '../services/pokeAPI.js';
 import { Component } from './component.js';
 export class PokeListItem extends Component {
     selector;
+    pokeList;
     offset;
     offsetStep;
     handlerButton;
     handlerPokeDetails;
     template = '';
-    pokeList;
     pokeListState = [];
     pokeListCount = 0;
-    constructor(selector, offset, offsetStep, handlerButton, handlerPokeDetails) {
+    constructor(selector, pokeList, offset, offsetStep, handlerButton, handlerPokeDetails) {
         super();
         this.selector = selector;
+        this.pokeList = pokeList;
         this.offset = offset;
         this.offsetStep = offsetStep;
         this.handlerButton = handlerButton;
         this.handlerPokeDetails = handlerPokeDetails;
-        this.pokeList = new PokemonAPI(offset, offsetStep);
-        this.pokeList.getSetOfItems().then((res) => {
-            this.pokeListState = res.results;
-            this.pokeListCount = res.count;
-            console.log(res); //////////////////
-            console.log(this.pokeListState); /////////////////
-            this.template = this.createTemplate();
-            this.render(this.selector);
-            this.manageComponent();
-        });
+        // this.pokeList = new PokemonAPI(offset, offsetStep);
+        if (typeof pokeList === PokemonAPI) {
+            this.pokeList.getItems().then((res) => {
+                this.pokeListState = res.results;
+                this.pokeListCount = res.count;
+                console.log(res); //////////////////
+                console.log(this.pokeListState); /////////////////
+                this.template = this.createTemplate();
+                this.render(this.selector);
+                this.manageComponent();
+            });
+        }
     }
     createTemplate() {
         let offsetRange = this.offsetStep;

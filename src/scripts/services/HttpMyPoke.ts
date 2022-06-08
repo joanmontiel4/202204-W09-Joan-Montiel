@@ -8,7 +8,7 @@ export class HttpMyPoke {
     constructor() {
         this.url = 'http://localhost:3000/mypokemons/';
     }
-    getAllPokemons(): Promise<Array<iMyPokemonListElement>> {
+    getItems(): Promise<Array<iMyPokemonListElement>> {
         return fetch(this.url).then((resp) => resp.json());
     }
     setPoke(poke: iPokemonListElement): Promise<iPokemonListElement> {

@@ -2,31 +2,34 @@ import { iComponent } from '../interfaces/icomponent.js';
 import { PokemonAPI } from '../services/pokeAPI.js';
 import { Component } from './component.js';
 import { iPokemonListElements } from '../interfaces/ipokemons-list.js';
+import { HttpMyPoke } from '../services/HttpMyPoke.js';
 
 export class PokeListItem extends Component implements iComponent {
     template: string = '';
-    pokeList: PokemonAPI;
     pokeListState: iPokemonListElements = [];
     pokeListCount: number = 0;
 
     constructor(
         public selector: string,
+        public pokeList: PokemonAPI | HttpMyPoke,
         public offset: number,
         public offsetStep: number,
         public handlerButton: Function,
         public handlerPokeDetails: Function
     ) {
         super();
-        this.pokeList = new PokemonAPI(offset, offsetStep);
-        this.pokeList.getSetOfItems().then((res) => {
-            this.pokeListState = res.results;
-            this.pokeListCount = res.count;
-            console.log(res); //////////////////
-            console.log(this.pokeListState); /////////////////
-            this.template = this.createTemplate();
-            this.render(this.selector);
-            this.manageComponent();
-        });
+        // this.pokeList = new PokemonAPI(offset, offsetStep);
+        if (typeof pokeList === PokemonAPI) {
+            this.pokeList.getItems().then((res) => {
+                this.pokeListState = res.results;
+                this.pokeListCount = res.count;
+                console.log(res); //////////////////
+                console.log(this.pokeListState); /////////////////
+                this.template = this.createTemplate();
+                this.render(this.selector);
+                this.manageComponent();
+            });
+        }
     }
     createTemplate() {
         let offsetRange: number = this.offsetStep;

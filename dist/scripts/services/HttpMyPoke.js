@@ -3,7 +3,7 @@ export class HttpMyPoke {
     constructor() {
         this.url = 'http://localhost:3000/mypokemons/';
     }
-    getAllPokemons() {
+    getItems() {
         return fetch(this.url).then((resp) => resp.json());
     }
     setPoke(poke) {

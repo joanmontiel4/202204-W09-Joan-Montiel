@@ -7,7 +7,7 @@ export class PokemonAPI {
         this.offsetStep = offsetStep;
         this.url = `https://pokeapi.co/api/v2/pokemon/?offset=${offset.toString()}&limit${offsetStep.toString()}`;
     }
-    getSetOfItems() {
+    getItems() {
         return fetch(this.url).then((resp) => resp.json());
     }
 }
