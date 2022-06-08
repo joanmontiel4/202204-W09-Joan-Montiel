@@ -1,7 +1,6 @@
 import {
     iPokemonListElement,
-    iMyPokemonListElement
-    iPokemonListElements,
+    iMyPokemonListElement,
 } from '../interfaces/ipokemons-list.js';
 
 export class HttpTasks {
@@ -9,7 +8,7 @@ export class HttpTasks {
     constructor() {
         this.url = 'http://localhost:3000/mypokemons/';
     }
-    getAllPokemons(): Promise<iPokemonListElements> {
+    getAllPokemons(): Promise<Array<iMyPokemonListElement>> {
         return fetch(this.url).then((resp) => resp.json());
     }
     setPoke(poke: iPokemonListElement): Promise<iPokemonListElement> {

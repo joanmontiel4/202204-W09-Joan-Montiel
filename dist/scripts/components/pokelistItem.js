@@ -1,21 +1,23 @@
-import { pokemonAPI } from '../services/pokeAPI.js';
+import { PokemonAPI } from '../services/pokeAPI.js';
 import { Component } from './component.js';
 export class PokelistItem extends Component {
     selector;
     offset;
     offsetStep;
     handlerButton;
+    handlerPokeDetails;
     template = '';
     pokeList;
     pokeListState = [];
     pokeListCount = 0;
-    constructor(selector, offset, offsetStep, handlerButton) {
+    constructor(selector, offset, offsetStep, handlerButton, handlerPokeDetails) {
         super();
         this.selector = selector;
         this.offset = offset;
         this.offsetStep = offsetStep;
         this.handlerButton = handlerButton;
-        this.pokeList = new pokemonAPI(offset, offsetStep);
+        this.handlerPokeDetails = handlerPokeDetails;
+        this.pokeList = new PokemonAPI(offset, offsetStep);
         this.pokeList.getSetOfItems().then((res) => {
             this.pokeListState = res.results;
             this.pokeListCount = res.count;
@@ -45,7 +47,7 @@ export class PokelistItem extends Component {
         this.pokeListState.forEach((pokemon) => {
             const splitPath = pokemon.url.split('/');
             const id = splitPath[splitPath.length - 2];
-            httpList += `<li class="pokelist__link"><a class="poke-${id}" href="">${pokemon.name}</a></li>`;
+            httpList += `<li class="pokelist__link"><a class="poke-link" data-pokeid="${id.toString()}" href="">${pokemon.name}</a></li>`;
         });
         return httpList;
     }
@@ -64,8 +66,8 @@ export class PokelistItem extends Component {
             .querySelectorAll('button')
             .forEach((item) => item.addEventListener('click', this.handlerButton.bind(this)));
         document
-            .querySelectorAll('button')
-            .forEach((item) => item.addEventListener('click', this.handlerButton.bind(this)));
+            .querySelectorAll('.poke-link')
+            .forEach((item) => item.addEventListener('click', this.handlerPokeDetails.bind(this)));
     }
 }
 //# sourceMappingURL=pokelistItem.js.map

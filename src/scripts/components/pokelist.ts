@@ -1,6 +1,7 @@
 import { iComponent } from '../interfaces/icomponent.js';
 import { Component } from './component.js';
 import { PokelistItem } from './pokelistItem.js';
+import { PokeCard } from './poke-card.js';
 
 export class PokeList extends Component implements iComponent {
     template: string = '';
@@ -15,7 +16,8 @@ export class PokeList extends Component implements iComponent {
             'section.pokelist',
             this.offset,
             this.offsetStep,
-            this.handlerButton.bind(this)
+            this.handlerButton.bind(this),
+            this.handlerPokeDetails.bind(this)
         );
     }
 
@@ -39,7 +41,19 @@ export class PokeList extends Component implements iComponent {
             'section.pokelist',
             this.offset,
             this.offsetStep,
-            this.handlerButton.bind(this)
+            this.handlerButton.bind(this),
+            this.handlerPokeDetails.bind(this)
         );
+    }
+
+    handlerPokeDetails(ev: Event) {
+        // Handling Previous and Next buttons by using the listOffset
+        ev.preventDefault();
+        const selectedPoke = (<HTMLElement>ev.target).dataset.pokeid as string;
+        const selectedPokeId = +selectedPoke;
+        console.log('handlerPokeDetails');
+        console.log(selectedPoke);
+        console.log(selectedPokeId);
+        new PokeCard('section.pokelist', selectedPokeId);
     }
 }
