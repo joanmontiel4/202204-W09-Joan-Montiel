@@ -29,7 +29,6 @@ export class PokeList extends Component implements iComponent {
     handlerButton(ev: Event) {
         // Handling Previous and Next buttons by using the listOffset
         ev.preventDefault();
-        console.log('In the handlerButton');
         const selectButton = (<HTMLElement>ev.target).dataset.button as string;
         if (selectButton === 'prev') {
             this.offset -= this.offsetStep;

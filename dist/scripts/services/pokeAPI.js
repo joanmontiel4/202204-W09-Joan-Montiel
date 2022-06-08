@@ -14,4 +14,4 @@ export class pokemonAPI {
 // setItems() {}
 // updateItem() {}
 // deleteItem() {}
-//# sourceMappingURL=pokemonAPI.js.map
+//# sourceMappingURL=pokeAPI.js.map

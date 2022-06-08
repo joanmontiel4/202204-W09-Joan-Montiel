@@ -1,4 +1,4 @@
-import { pokemonAPI } from '../services/pokemonAPI.js';
+import { pokemonAPI } from '../services/pokeAPI.js';
 import { Component } from './component.js';
 export class PokelistItem extends Component {
     selector;
@@ -37,14 +37,15 @@ export class PokelistItem extends Component {
         return `
                 <ul>${this.createList()}</ul>
                 <nav class="nav">${this.createNav()}</nav>
-                <span>${this.offset.toString()}-${offsetRange.toString()}/${this.pokeListCount}</span>
-            
+                <span>${this.offset.toString()}-${offsetRange.toString()}/${this.pokeListCount}</span>    
         `;
     }
     createList() {
         let httpList = '';
         this.pokeListState.forEach((pokemon) => {
-            httpList += `<li class="pokelist__link"><a href="">${pokemon.name}</li>`;
+            const splitPath = pokemon.url.split('/');
+            const id = splitPath[splitPath.length - 2];
+            httpList += `<li class="pokelist__link"><a class="poke-${id}" href="">${pokemon.name}</a></li>`;
         });
         return httpList;
     }
@@ -59,6 +60,9 @@ export class PokelistItem extends Component {
         `;
     }
     manageComponent() {
+        document
+            .querySelectorAll('button')
+            .forEach((item) => item.addEventListener('click', this.handlerButton.bind(this)));
         document
             .querySelectorAll('button')
             .forEach((item) => item.addEventListener('click', this.handlerButton.bind(this)));
