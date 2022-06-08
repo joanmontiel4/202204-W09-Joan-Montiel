@@ -3,14 +3,16 @@ import { PokeDetailsAPI } from '../services/poke-detailsAPI.js';
 export class PokeCard extends Component {
     selector;
     pokeId;
+    handlerCardButtons;
     template = '';
     pokeDetails;
     pokeDetailsState;
     pokeSelectedDetails;
-    constructor(selector, pokeId) {
+    constructor(selector, pokeId, handlerCardButtons) {
         super();
         this.selector = selector;
         this.pokeId = pokeId;
+        this.handlerCardButtons = handlerCardButtons;
         this.pokeDetails = new PokeDetailsAPI(pokeId);
         this.pokeDetails.getSetOfItems().then((res) => {
             this.pokeDetailsState = res;
@@ -22,13 +24,21 @@ export class PokeCard extends Component {
             console.log(this.pokeSelectedDetails);
             this.template = this.createTemplate();
             this.render(this.selector);
-            // this.manageComponent();
+            this.manageComponent();
         });
         ;
     }
     createTemplate() {
         return `
-     
+        <div class="poke-details">
+            <span>${this.pokeSelectedDetails.name}</span>
+            <img src="${this.pokeSelectedDetails.image}">
+            <span>Order: ${this.pokeSelectedDetails.order}</span>
+            <span>Height: ${this.pokeSelectedDetails.height}</span>
+            <span>Weight: ${this.pokeSelectedDetails.weight}</span>
+        </div>
+        <button class="card-button" data-cardbutton="catch">Add to my list</button>
+        <button class="card-button" data-cardbutton="goto">Go to list</button>
         `;
     }
     createDetailsCard() {
@@ -38,8 +48,13 @@ export class PokeCard extends Component {
             order: this.pokeDetailsState.order,
             height: this.pokeDetailsState.height,
             weight: this.pokeDetailsState.weight,
-            image: this.pokeDetailsState.sprites.back_default,
+            image: this.pokeDetailsState.sprites.front_default,
         };
+    }
+    manageComponent() {
+        document
+            .querySelectorAll('.card-button')
+            .forEach((item) => item.addEventListener('click', this.handlerCardButtons.bind(this)));
     }
 }
 //# sourceMappingURL=poke-card.js.map

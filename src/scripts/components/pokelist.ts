@@ -54,6 +54,28 @@ export class PokeList extends Component implements iComponent {
         console.log('handlerPokeDetails');
         console.log(selectedPoke);
         console.log(selectedPokeId);
-        new PokeCard('section.pokelist', selectedPokeId);
+        new PokeCard(
+            'section.pokelist',
+            selectedPokeId,
+            this.handlerCardButtons.bind(this)
+        );
+    }
+
+    handlerCardButtons(ev: Event) {
+        // Handling Add to my list and Go to list buttons
+        ev.preventDefault();
+        const selectButton = (<HTMLElement>ev.target).dataset
+            .cardbutton as string;
+        if (selectButton === 'catch') {
+            console.log('catch');
+        } else if (selectButton === 'goto') {
+            new PokelistItem(
+                'section.pokelist',
+                this.offset,
+                this.offsetStep,
+                this.handlerButton.bind(this),
+                this.handlerPokeDetails.bind(this)
+            );
+        }
     }
 }
