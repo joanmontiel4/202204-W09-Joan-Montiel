@@ -6,14 +6,24 @@
       "id": 1
     },
     {
-      "name": "charmeleon",
-      "url": "https://pokeapi.co/api/v2/pokemon/5/",
-      "id": 2
+      "name": "spearow",
+      "url": "https://pokeapi.co/api/v2/pokemon/21/",
+      "id": 6
     },
     {
-      "name": "paras",
-      "url": "https://pokeapi.co/api/v2/pokemon/46/",
-      "id": 3
+      "name": "bulbasaur",
+      "url": "https://pokeapi.co/api/v2/pokemon/1/",
+      "id": 7
+    },
+    {
+      "name": "venomoth",
+      "url": "https://pokeapi.co/api/v2/pokemon/49/",
+      "id": 8
+    },
+    {
+      "name": "oddish",
+      "url": "https://pokeapi.co/api/v2/pokemon/43/",
+      "id": 9
     }
   ],
   "posts": [

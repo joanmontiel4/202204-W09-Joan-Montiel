@@ -55,7 +55,6 @@ export class PokeList extends Component implements iComponent {
         const selectedPoke = (<HTMLElement>ev.target).dataset.pokeid as string;
         const selectedPokeId = +selectedPoke;
         console.log('handlerPokeDetails');
-        console.log(selectedPoke);
         console.log(selectedPokeId);
         new PokeCard(
             'section.pokelist',
@@ -86,7 +85,22 @@ export class PokeList extends Component implements iComponent {
     }
 
     addToMyList(pokeName: string) {
-        const newPoke = new HttpMyPoke();
+        let found = false;
+        const myList = new HttpMyPoke();
+        myList.getAllPokemons().then((res) => {
+            const currentMyPokeList: iPokemonListElements = res;
+            currentMyPokeList.forEach((item) => {
+                if (item.name === pokeName) {
+                    found = true;
+                }
+            });
+            if (!found) {
+                this.addItemToMyList(pokeName, myList);
+            }
+        });
+    }
+
+    addItemToMyList(pokeName: string, myList: HttpMyPoke) {
         const currentList: iPokemonListElements =
             this.currentPokeList.pokeListState;
         console.log(pokeName);
@@ -95,6 +109,6 @@ export class PokeList extends Component implements iComponent {
             (poke) => poke.name === pokeName
         );
         console.log(selectedPoke);
-        newPoke.setPoke(selectedPoke[0]);
+        myList.setPoke(selectedPoke[0]).then((item) => console.log(item));
     }
 }

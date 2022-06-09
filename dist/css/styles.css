@@ -1,10 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 * {
     box-sizing: border-box;
 }
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-        Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    font-family: Roboto, sans-serif;
 }
 h1,
 h2,
@@ -20,4 +21,209 @@ li {
 }
 img {
     max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+    background-color: rgb(237, 235, 235);
+    padding-bottom: 10px;
+}
+
+.main-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-title__img {
+    width: 170px;
+    height: 100%;
+}
+
+.main-title__word {
+    font-size: 30px;
+    font-weight: 700;
+    color: #1d2c5e;
+    /* color: #3276b1; */
+    padding: 20px 5px;
+    margin-top: 20px;
+}
+
+.menu__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu__items {
+    padding: 5px;
+    margin-top: 20px;
+    margin-right: 10px;
+    border: 2px solid #ffcb05;
+    border-radius: 10px;
+    box-shadow: 2px 4px #3276b1;
+    background-color: white;
+}
+
+.menu__anchors {
+    text-decoration: none;
+    color: #1d2c5e;
+}
+
+.pokelist {
+    width: 100%;
+    height: 300%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* .pokelist__link {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+} */
+
+.poke-sign {
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #3276b1;
+    border-radius: 10px;
+    box-shadow: 1.5px 4px #1d2c5e;
+}
+
+.poke-sign__anchor {
+    font-family: Roboto;
+    text-decoration: none;
+    color: #1d2c5e;
+}
+
+.pokelist__nav {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 10px;
+}
+
+.button,
+.card-button,
+.delete-button {
+    padding: 5px 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #ffcb05;
+    border-radius: 10px;
+    box-shadow: 2px 4px #3276b1;
+    background-color: white;
+    color: #1d2c5e;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.pokelist__span {
+    color: #1d2c5e;
+    font-weight: 500;
+}
+
+.poke-details__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.poke-details {
+    margin: 20px 10px 10px 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #3276b1;
+    border-radius: 10px;
+    box-shadow: 1.5px 4px #1d2c5e;
+    color: #1d2c5e;
+}
+
+.cached-message {
+    color: #1d2c5e;
+    margin: 10px;
+}
+
+.poke-details__name {
+    font-size: larger;
+    font-weight: 600;
+    color: #1d2c5e;
+}
+
+.pokelist__container {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #3276b1;
+    border-radius: 10px;
+    box-shadow: 1.5px 4px #1d2c5e;
+    color: #1d2c5e;
+}
+
+.mypokelist__link {
+    width: 85%;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #3276b1;
+    box-shadow: 1.5px 4px #1d2c5e;
+    color: #1d2c5e;
+}
+
+.mypoke-link {
+    text-decoration: none;
+    color: #1d2c5e;
+    margin: 10px;
+    font-weight: 600;
+}
+
+.mypokemon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.h2-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: #1d2c5e;
+    padding: 20px 5px;
+    margin: 20px;
 }
