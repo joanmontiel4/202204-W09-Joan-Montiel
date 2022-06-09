@@ -13,8 +13,8 @@ export class Menu extends Component implements iComponent {
     createTemplate() {
         let htmlItems = '';
         this.menuOptions.forEach((item) => {
-            htmlItems += `<li><a href="${item.path}">${item.label}</a></li>`;
+            htmlItems += `<li class="menu__items"><a class="menu__anchors" href="${item.path}">${item.label}</a></li>`;
         });
-        return `<nav><ul>${htmlItems}</ul></nav>`;
+        return `<nav><ul class="menu__container">${htmlItems}</ul></nav>`;
     }
 }

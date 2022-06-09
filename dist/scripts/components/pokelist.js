@@ -39,7 +39,6 @@ export class PokeList extends Component {
         const selectedPoke = ev.target.dataset.pokeid;
         const selectedPokeId = +selectedPoke;
         console.log('handlerPokeDetails');
-        console.log(selectedPoke);
         console.log(selectedPokeId);
         new PokeCard('section.pokelist', selectedPokeId, this.handlerCardButtons.bind(this));
     }
@@ -59,13 +58,27 @@ export class PokeList extends Component {
         }
     }
     addToMyList(pokeName) {
-        const newPoke = new HttpMyPoke();
+        let found = false;
+        const myList = new HttpMyPoke();
+        myList.getAllPokemons().then((res) => {
+            const currentMyPokeList = res;
+            currentMyPokeList.forEach((item) => {
+                if (item.name === pokeName) {
+                    found = true;
+                }
+            });
+            if (!found) {
+                this.addItemToMyList(pokeName, myList);
+            }
+        });
+    }
+    addItemToMyList(pokeName, myList) {
         const currentList = this.currentPokeList.pokeListState;
         console.log(pokeName);
         console.log(currentList);
         const selectedPoke = currentList.filter((poke) => poke.name === pokeName);
         console.log(selectedPoke);
-        newPoke.setPoke(selectedPoke[0]);
+        myList.setPoke(selectedPoke[0]).then((item) => console.log(item));
     }
 }
 //# sourceMappingURL=pokelist.js.map

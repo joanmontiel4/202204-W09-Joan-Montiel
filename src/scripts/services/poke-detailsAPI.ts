@@ -3,7 +3,7 @@ export class PokeDetailsAPI {
     constructor(public pokeId: number) {
         this.url = `https://pokeapi.co/api/v2/pokemon/${pokeId.toString()}`;
     }
-    getSetOfItems() {
+    getItems() {
         return fetch(this.url).then((resp) => resp.json());
     }
 }
